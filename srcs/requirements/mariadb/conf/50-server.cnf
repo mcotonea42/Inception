@@ -1,0 +1,10 @@
+[mysqld]
+datadir = /var/lib/mysql
+# Le dossier où les données (tables, utilisateurs) sont sauvegardées.
+socket = /run/mysqld/mysqld.sock 
+bind_address=*
+# Autorise Wordpress à se connecter.
+port = 3306
+# Le port d'écoute standard (comme le port 443 pour le web).
+user = mysql
+# L'utilisateur Linux qui lance la commande, pour eviter de la lancer en 'root'.

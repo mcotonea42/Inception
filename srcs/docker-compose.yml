@@ -1,0 +1,57 @@
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    restart: always
+    networks:
+      - inception-net
+    env_file:
+      - ./.env
+    volumes:
+      - /home/mcotonea/data/db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MARIADB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    restart: always
+    networks:
+      - inception-net
+    env_file:
+      - ./.env
+    volumes: 
+      - /home/mcotonea/data/wp_files:/var/www/html
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/usr/bin/nc", "-z", "127.0.0.1", "9000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    networks:
+      - inception-net
+    ports:
+      - "443:443"
+    volumes:
+      - /home/mcotonea/data/wp_files:/var/www/html
+    depends_on:
+     wordpress:
+       condition: service_healthy
+
+networks:
+  inception-net:
+
+volumes:
+  db_data:
+  wp_files:
