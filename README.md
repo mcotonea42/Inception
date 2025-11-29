@@ -1,5 +1,4 @@
-
-# 🚀 Inception - Projet Docker WordPress/MariaDB/Nginx
+# 🚀 Inception - Docker WordPress/MariaDB/Nginx Project
 
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Alpine Linux](https://img.shields.io/badge/Alpine_Linux-%230D597F.svg?style=for-the-badge&logo=alpine-linux&logoColor=white)
@@ -8,15 +7,15 @@
 ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
 ![42 School](https://img.shields.io/badge/School-42-000000?style=for-the-badge&logo=42&logoColor=white)
 
-> ⚠️ **Prérequis :**
-> - Docker doit être installé sur votre PC ([voir la documentation officielle](https://docs.docker.com/get-docker/))
-> - Ce projet a été conçu pour tourner sous **Linux** (ou VM)
+> ⚠️ **Prerequisites:**
+> - Docker must be installed on your machine ([see official documentation](https://docs.docker.com/get-docker/))
+> - This project was designed to run on **Linux** (or VM)
 
-Bienvenue sur **Inception** ! Ce projet te permet de déployer un site WordPress sécurisé avec MariaDB et Nginx, le tout orchestré avec Docker Compose.  
+Welcome to **Inception**! This project allows you to deploy a secure WordPress site with MariaDB and Nginx, all orchestrated via Docker Compose.
 
 ---
 
-## 🗂️ Structure du projet
+## 🗂️ Project Structure
 
 ```
 Makefile
@@ -41,68 +40,68 @@ srcs/
 				setup.sh
 ```
 
-- **MariaDB** : Base de données pour WordPress
-- **WordPress** : CMS installé et configuré automatiquement
-- **Nginx** : Serveur web sécurisé avec certificat SSL auto-signé
+- **MariaDB**: Database for WordPress
+- **WordPress**: CMS automatically installed and configured
+- **Nginx**: Secure web server with a self-signed SSL certificate
 
 ---
 
-## ⚙️ Installation & Lancement
+## ⚙️ Installation & Usage
 
-1. **Configure les variables d’environnement**
+1. **Configure Environment Variables**
 
-	 Crée un fichier `.env` dans le dossier srcs et renseigne les valeurs (exemple dans `.env_sample` si présent).
+	 Create a `.env` file in the `srcs` folder and fill in the values (see `.env_sample` if available).
 
-2. **Modifie ton fichier hosts**
-	- Ajoute cette ligne dans `/etc/hosts` pour faire pointer le domaine vers localhost :
+2. **Modify your hosts file**
+	- Add the following line to `/etc/hosts` to map the domain to localhost:
 	  ```
 	  127.0.0.1   mcotonea.42.fr
 	  ```
 
-3. **Lance les services**
+3. **Start the services**
 	 ```zsh
 	 make
 	 ```
 
-4. **Accède à ton site**
-	- Ouvre [https://mcotonea.42.fr](https://mcotonea.42.fr) (ou le domaine que tu as mis dans `.env`)
+4. **Access your site**
+	- Open [https://mcotonea.42.fr](https://mcotonea.42.fr) (or the domain you defined in `.env`)
 
 ---
 
-## 🛠️ Commandes utiles
+## 🛠️ Useful Commands
 
-- **Arrêter les services**
+- **Stop services**
 	```zsh
 	make down
 	```
-- **Nettoyer tout (conteneurs + volumes)**
+- **Clean everything (containers + volumes)**
 	```zsh
 	make clean
 	```
-- **Rebuild complet**
+- **Full Rebuild**
 	```zsh
 	make re
 	```
 
 ---
 
-## 🔒 Sécurité
+## 🔒 Security
 
-- Accès sécurisé en HTTPS (certificat auto-signé)
-- Les mots de passe et utilisateurs sont définis via le fichier `.env`
-
----
-
-## 📦 Volumes persistants
-
-Les données sont sauvegardées dans :
-- `/home/mcotonea/data/db_data` : Base de données MariaDB
-- `/home/mcotonea/data/wp_files` : Fichiers WordPress
+- Secure HTTPS access (self-signed certificate)
+- Passwords and users are defined via the `.env` file
 
 ---
 
-## 👤 Auteur
+## 📦 Persistent Volumes
 
-Ce projet a été réalisé par :
+Data is stored in:
+- `/home/mcotonea/data/db_data`: MariaDB database
+- `/home/mcotonea/data/wp_files`: WordPress files
 
-* **COTONEA Melvin** - [Voir le profil GitHub](https://github.com/mcotonea42)
+---
+
+## 👤 Author
+
+This project was built by:
+
+* **COTONEA Melvin** - [View GitHub Profile](https://github.com/mcotonea42)
